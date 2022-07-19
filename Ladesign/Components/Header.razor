@@ -1,0 +1,19 @@
+﻿<header class="header" id="header">
+    <Container>
+        <Logo />
+        <Menu @ref=menu/>
+        <Telephone />
+        <Burger OnClick="ToggleMenu" @ref=burger/>
+    </Container>
+</header>
+
+@code {
+    private Menu? menu;
+    private Burger? burger;
+
+    private void ToggleMenu()
+    {
+        burger?.ToggleBurger();
+        menu?.ToggleMenu();
+    }
+}

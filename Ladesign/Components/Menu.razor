@@ -1,0 +1,25 @@
+﻿<nav class=@((open) ? "menu open" : "menu") @onclick="CloseMenu">
+    <ul class="menu__items">
+        @foreach (LinkModel link in AppData.MenuLinks)
+        {
+            <li class="menu__item">
+                <a class="menu__link" href="@link.Url">@link.Title</a>
+            </li>
+        }
+    </ul>
+</nav>
+
+@code {
+    private bool open = false;
+
+    public void ToggleMenu()
+    {
+        open = !open;
+        StateHasChanged();
+    }
+
+    private void CloseMenu()
+    {
+        if (open) open = false;
+    }
+}

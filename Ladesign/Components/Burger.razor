@@ -1,0 +1,19 @@
+﻿<button class=@((active) ? "burger active" : "burger")
+        @onclick="OnClick"
+        type="button" aria-label="Переключить меню">
+    <span></span>
+    <span></span>
+    <span></span>
+</button>
+
+@code{
+    private bool active = false;
+
+    [Parameter]
+    public EventCallback OnClick { get; set; }
+
+    public void ToggleBurger()
+    {
+        active = !active;
+    }
+}

@@ -1,0 +1,103 @@
+﻿.header {
+    border-bottom: 1px solid #878787;
+    padding: 0 15px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 5;
+}
+
+    .header.scrolling {
+        background: #FFF;
+    }
+
+        .header.scrolling ::deep .logo {
+            background: url('images/icons/logo_dark.png') center no-repeat;
+        }
+
+    .header.scrolling ::deep .container {
+        padding: 1.25rem 0;
+    }
+
+    .header ::deep .container {
+        display: grid;
+        grid-template-areas: 'logo menu telephone';
+        grid-column-gap: 3rem;
+        padding: 1.875rem 0;
+        align-items: center;
+    }
+
+    .header ::deep .logo {
+        grid-area: logo;
+        z-index: 2;
+    }
+
+    .header ::deep .menu {
+        grid-area: menu;
+    }
+
+    .header ::deep .telephone {
+        grid-area: telephone;
+        justify-self: end;
+        z-index: 2;
+    }
+
+@media (max-width: 768px) {
+    .header ::deep .container {
+        grid-template-areas:
+            'menu menu menu'
+            'logo telephone burger';
+        grid-template-columns: 45px 1fr 2.5rem;
+    }
+
+        .header ::deep .container .burger {
+            display: inline-block;
+        }
+
+    .header ::deep .burger {
+        grid-area: burger;
+    }
+
+    .header ::deep .menu {
+        height: 0;
+        overflow: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: #080808;
+        width: 100%;
+        display: flex;
+        align-items:center;
+        justify-content: center;
+    }
+
+    .header ::deep .menu__items{
+        flex-direction: column;
+        transform: scale(0);
+        transition: .4s ease;
+    }
+
+        .header ::deep .menu.open {
+            height: 100vh;
+        }
+
+    .header ::deep .menu.open .menu__items {
+        transform: scale(1);
+    }
+
+            .header ::deep .menu.open .menu__items a{
+                display: block;
+                padding: 5px;
+            }
+}
+
+@media (max-width: 450px) {
+    .header ::deep .telephone {
+        justify-self: center;
+    }
+
+    .header ::deep .container {
+        grid-column-gap: 1.5rem;
+    }
+}

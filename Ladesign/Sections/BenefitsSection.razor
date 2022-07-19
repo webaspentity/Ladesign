@@ -1,0 +1,25 @@
+﻿<section class="benefits-section">
+    <Container>
+        <SectionTitle>Наша команда дает уверенность</SectionTitle>
+        <div class="benefits-section__body">
+            <div class="benefits-section__content">
+                <p class="benefits-section__text">
+                    Дизайн-проект от студии LA Design не только совершенен по дизайну, но и реализуем
+                </p>
+                <div class="benefits-section__spoilers">
+                    @foreach (SpoilerModel spoiler in AppData.SpoilersData)
+                    {
+                        <Spoiler Title="@spoiler.Title"><p>@spoiler.Content</p></Spoiler>
+                    }
+                </div>
+            </div>
+            <div class="benefits-section__image">
+                <img src="images/benefits_image.jpg" alt="Дизайн-проект" />
+            </div>
+        </div>
+    </Container>
+</section>
+
+@code {
+
+}

@@ -1,0 +1,31 @@
+﻿<div class="gallery">
+    <div class="gallery__filters">
+        <button class="gallery__filter active" type="button">все работы</button>
+        <button class="gallery__filter" type="button">квартиры</button>
+        <button class="gallery__filter" type="button">дома</button>
+        <button class="gallery__filter" type="button">коммерческие помещения</button>
+    </div>
+    <div class="gallery__items">
+        @if (Items is not null)
+        {
+            foreach (ImageModel image in Items)
+            {
+                <div class="gallery__item">
+                    <img src="@image.Source" alt="@image.Alt" />
+                    <a href="#"></a>
+               </div>
+            }
+        }
+    </div>
+    @if (Items is not null && Display > Items.Count)
+    {
+        <button class="gallery__show-more" type="button">показать еще работы</button>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public List<ImageModel>? Items { get; set; }
+    [Parameter]
+    public int Display { get; set; }
+}

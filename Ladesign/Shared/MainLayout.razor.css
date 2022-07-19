@@ -1,0 +1,10 @@
+.page__content{
+    display: grid;
+    grid-row-gap: 130px;
+}
+
+@media (max-width: 768px){
+    .page__content {
+        grid-row-gap: 70px;
+    }
+}

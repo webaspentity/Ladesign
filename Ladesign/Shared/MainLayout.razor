@@ -1,0 +1,16 @@
+﻿@inherits LayoutComponentBase
+
+<Header />
+
+<main class="page" @onscroll="OnScroll" @onmousewheel="OnScroll">
+    <article class="page__content">
+        @Body
+    </article>
+</main>
+
+@code{
+    private void OnScroll()
+    {
+        Console.WriteLine("Scrolling...");
+    }
+}

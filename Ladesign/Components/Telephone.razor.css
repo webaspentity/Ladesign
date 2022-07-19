@@ -1,0 +1,12 @@
+﻿.telephone {
+    font-size: 1.125rem;
+    display: inline-flex;
+    align-items: center;
+    column-gap: 0.56em;
+}
+
+    .telephone a {
+        text-decoration: none;
+        color: #FFF;
+        white-space: nowrap;
+    }

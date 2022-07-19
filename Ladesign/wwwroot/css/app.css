@@ -1,0 +1,173 @@
+﻿/* LOADING ======================================================== */
+
+.loading{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FFF;
+}
+
+.lds-grid {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+    .lds-grid div {
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: lightgrey;
+        animation: lds-grid 1.2s linear infinite;
+    }
+
+        .lds-grid div:nth-child(1) {
+            top: 8px;
+            left: 8px;
+            animation-delay: 0s;
+        }
+
+        .lds-grid div:nth-child(2) {
+            top: 8px;
+            left: 32px;
+            animation-delay: -0.4s;
+        }
+
+        .lds-grid div:nth-child(3) {
+            top: 8px;
+            left: 56px;
+            animation-delay: -0.8s;
+        }
+
+        .lds-grid div:nth-child(4) {
+            top: 32px;
+            left: 8px;
+            animation-delay: -0.4s;
+        }
+
+        .lds-grid div:nth-child(5) {
+            top: 32px;
+            left: 32px;
+            animation-delay: -0.8s;
+        }
+
+        .lds-grid div:nth-child(6) {
+            top: 32px;
+            left: 56px;
+            animation-delay: -1.2s;
+        }
+
+        .lds-grid div:nth-child(7) {
+            top: 56px;
+            left: 8px;
+            animation-delay: -0.8s;
+        }
+
+        .lds-grid div:nth-child(8) {
+            top: 56px;
+            left: 32px;
+            animation-delay: -1.2s;
+        }
+
+        .lds-grid div:nth-child(9) {
+            top: 56px;
+            left: 56px;
+            animation-delay: -1.6s;
+        }
+
+@keyframes lds-grid {
+    0%, 100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* ======================================================== END LOADING*/
+
+/*FONTS ================================================================*/
+
+@font-face {
+    font-family: 'Roboto';
+    src: local('Roboto'), 
+        url('../fonts/Roboto-Regular.woff2') format('woff2'), 
+        url('../fonts/Roboto-Regular.woff') format('woff'), 
+        url('../fonts/Roboto-Regular.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Roboto Condensed';
+    src: local('Roboto Condensed'), 
+        url('../fonts/RobotoCondensed-Regular.woff2') format('woff2'), 
+        url('../fonts/RobotoCondensed-Regular.woff') format('woff'), 
+        url('../fonts/Roboto-Regular.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Roboto Condensed';
+    src: local('Roboto Condensed'), 
+        url('../fonts/RobotoCondensed-Light.woff2') format('woff2'), 
+        url('../fonts/RobotoCondensed-Light.woff') format('woff'), 
+        url('../fonts/RobotoCondensed-Light.ttf') format('ttf');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: local('Roboto'), 
+        url('../fonts/Roboto-Bold.woff2') format('woff2'), 
+        url('../fonts/Roboto-Bold.woff') format('woff'), 
+        url('../fonts/Roboto-Bold.ttf') format('ttf');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: local('Roboto'), 
+        url('../fonts/Roboto-Light.woff2') format('woff2'), 
+        url('../fonts/Roboto-Light.woff') format('woff'), 
+        url('../fonts/Roboto-Light.ttf') format('ttf');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Roboto Condensed';
+    src: local('Roboto Condensed'), 
+        url('RobotoCondensed-Bold.woff2') format('woff2'), 
+        url('RobotoCondensed-Bold.woff') format('woff'), 
+        url('RobotoCondensed-Bold.ttf') format('ttf');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* ================================================================ END FONTS*/
+
+body {
+    margin: 0;
+    font-family: 'Roboto Condensed';
+    font-weight: normal;
+    background: #FFF;
+}
+
+.wrapper{
+}
+
