@@ -1,12 +1,14 @@
-﻿.portfolio-section{
+﻿.portfolio-section {
     padding: 0 15px;
+    border: 4px solid black;
+    box-sizing: border-box;
 }
 
-.portfolio-section ::deep .section-title{
-    text-align: center;
-}
+    .portfolio-section ::deep .section-title {
+        text-align: center;
+    }
 
-    .portfolio-section ::deep .container{
+    .portfolio-section ::deep .container {
         display: flex;
         flex-direction: column;
         row-gap: 50px;

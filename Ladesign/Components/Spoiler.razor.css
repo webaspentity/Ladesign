@@ -54,6 +54,7 @@
     text-align: justify;
     transition: max-height 0.4s ease;
     line-height: 1.5;
+    padding: 10px 40px 0 0;
 }
 
     .spoiler__content ::deep p {

@@ -23,7 +23,26 @@
     letter-spacing: 0.14em;
     color: #777777;
     padding: 0.625rem 0;
+    position: relative;
+    padding-right: 1.5em;
+    border-bottom: 2px solid transparent;
+    box-sizing: border-box;
+    transition: .2s ease;
 }
+
+    .gallery__filter span {
+        display: block;
+        width: 1.14em;
+        height: 1.14em;
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: inherit;
+    }
+
+    .gallery__filter:hover {
+        cursor: pointer;
+    }
 
     .gallery__filter.active {
         border-bottom: 2px solid #000;
@@ -31,7 +50,7 @@
 
     .gallery__items {
         display: grid;
-        grid-template-columns: repeat(4, minmax(210px, 1fr));
+        grid-template-columns: repeat(4, 1fr);
         grid-template-rows: repeat(4, minmax(210px, 1fr));
         grid-template-areas:
             'one two three four'
@@ -39,11 +58,14 @@
             'six six seven seven'
             'eight nine ten ten';
         grid-gap: 30px;
+        width: 100%;
+        border: 2px solid red;
     }
 
 .gallery__item {
     position: relative;
     height: 100%;
+    border: 2px solid green;
 }
 
     .gallery__items .gallery__item:nth-child(1) {
@@ -96,17 +118,28 @@
 }
 
 .gallery__show-more {
+    font-size: 0.875rem;
+    font-family: inherit;
+    border: 1px solid #393246;
+    background: transparent;
+    padding: 1.43em 3.57em;
+    color: #393246;
+    text-transform: uppercase;
 }
 
-@media (max-width: 1024px){
-    .gallery {
+    .gallery__show-more:hover{
+        cursor: pointer;
+    }
+
+    @media (max-width: 1024px) {
+        .gallery {
         row-gap: 40px;
     }
 }
 
 @media (max-width: 768px){
     .gallery__items {
-        grid-template-columns: repeat(2, minmax(290px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(8, minmax(290px, 1fr));
         grid-template-areas:
             'one two'
@@ -126,7 +159,6 @@
 
 @media (max-width: 350px) {
     .gallery__items {
-        grid-template-columns: repeat(1, minmax(290px, 1fr));
         grid-template-rows: repeat(11, minmax(290px, 1fr));
         grid-template-areas:
             'one'
@@ -141,6 +173,10 @@
             'nine'
             'ten';
         grid-gap: 10px;
+    }
+
+    .gallery__item{
+        width: 100%;
     }
 }
 

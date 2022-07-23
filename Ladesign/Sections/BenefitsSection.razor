@@ -7,10 +7,12 @@
                     Дизайн-проект от студии LA Design не только совершенен по дизайну, но и реализуем
                 </p>
                 <div class="benefits-section__spoilers">
-                    @foreach (SpoilerModel spoiler in AppData.SpoilersData)
-                    {
-                        <Spoiler Title="@spoiler.Title"><p>@spoiler.Content</p></Spoiler>
-                    }
+                    <CascadingValue Value="current">
+                        @for (int i = 0; i < AppData.SpoilersData.Count; i++)
+                        {
+                            <Spoiler Item="AppData.SpoilersData[i]" Order="@i" OnClick="SetCurrent"/>
+                        }
+                    </CascadingValue>
                 </div>
             </div>
             <div class="benefits-section__image">
@@ -21,5 +23,11 @@
 </section>
 
 @code {
+    public int current = -1;
 
+    private void SetCurrent(int order)
+    {
+        if (current == order) current = -1; 
+        else current = order;
+    }
 }
