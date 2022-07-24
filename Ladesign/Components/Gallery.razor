@@ -1,50 +1,59 @@
 ﻿<div class="gallery">
     <div class="gallery__filters">
-        <button class=@((currentFilter == 0) ? "gallery__filter active" : "gallery__filter") type="button" @onclick="()=> currentFilter = 0">все работы<span>@Items.Count</span></button>
-        <button class=@((currentFilter == 1) ? "gallery__filter active" : "gallery__filter") type="button" @onclick="()=> currentFilter = 1">квартиры<span>@(Items.Count(item => item.Alt == "Квартира"))</span></button>
-        <button class=@((currentFilter == 2) ? "gallery__filter active" : "gallery__filter") type="button" @onclick="()=> currentFilter = 2">дома<span>@(Items.Count(item => item.Alt == "Дом"))</span></button>
-        <button class=@((currentFilter == 3) ? "gallery__filter active" : "gallery__filter") type="button" @onclick="()=> currentFilter = 3">коммерческие помещения<span>@(Items.Count(item => item.Alt == "Помещение"))</span></button>
+        <button class=@((currentFilter == 0) ? "gallery__filter active" : "gallery__filter") type="button" @onclick="()=> Filter(0)" aria-label="Показать все работы">все работы<span>@AppData.Images.Count</span></button>
+        <button class=@((currentFilter == 1) ? "gallery__filter active" : "gallery__filter") type="button" @onclick="()=> Filter(1)" aria-label="Показать квартиры">квартиры<span>@(AppData.Images.Count(item => item.Alt == "Квартира"))</span></button>
+        <button class=@((currentFilter == 2) ? "gallery__filter active" : "gallery__filter") type="button" @onclick="()=> Filter(2)" aria-label="Показать дома">дома<span>@(AppData.Images.Count(item => item.Alt == "Дом"))</span></button>
+        <button class=@((currentFilter == 3) ? "gallery__filter active" : "gallery__filter") type="button" @onclick="()=> Filter(3)" aria-label="Показать помещения">коммерческие помещения<span>@(AppData.Images.Count(item => item.Alt == "Помещение"))</span></button>
     </div>
     <div class="gallery__items">
         @if (Items is not null)
         {
-            if (Display > 0)
+            foreach (ImageModel item in Items)
             {
-                for (int i = 0; i < Display; i++)
-                {
-                    <div class="gallery__item">
-                        <img src="@Items[i].Source" alt="@Items[i].Alt" />
-                        <a href="#"></a>
-                    </div>
-                }
-            } else
-            {
-                foreach (ImageModel item in Items)
-                {
-                    <div class="gallery__item">
-                        <img src="@item.Source" alt="@item.Alt" />
-                        <a href="#"></a>
-                    </div>
-                }
+                <div class="gallery__item">
+                    <img src="@item.Source" alt="@item.Alt" />
+                    <a href="#"></a>
+                </div>
             }
         }
     </div>
-    @if (Items is not null && Display < Items.Count)
-    {
-        <button class="gallery__show-more" type="button">показать еще работы</button>
-    }
+
+    <button class="gallery__show-more" type="button" @onclick="ShowMore" disabled=@disabled>показать еще работы</button>
+
 </div>
 
 @code {
     private int currentFilter = 0;
+    private static int count = 10;
+    private bool disabled = false;
 
-    [Parameter]
-    public List<ImageModel>? Items { get; set; }
-    [Parameter]
-    public int Display { get; set; } = 0;
+    private List<ImageModel>? Items = AppData.Images.Take<ImageModel>(count).ToList<ImageModel>();
 
-    protected override void OnInitialized()
+    private void Filter(int i)
     {
-        
+        currentFilter = i;
+
+        switch (currentFilter)
+        {
+            case 0: Items = AppData.Images; break;
+            case 1: Items = AppData.Images.Where(image => image.Alt == "Квартира").ToList<ImageModel>(); break;
+            case 2: Items = AppData.Images.Where(image => image.Alt == "Дом").ToList<ImageModel>(); break;
+            case 3: Items = AppData.Images.Where(image => image.Alt == "Помещение").ToList<ImageModel>(); break;
+        }
+    }
+
+    private void ShowMore()
+    {
+        if (count < AppData.Images.Count)
+        {
+            count += 10;
+
+            if (count >= AppData.Images.Count)
+            {
+                disabled = true;
+            }
+            Items = AppData.Images.Take<ImageModel>(count).ToList<ImageModel>();
+            //this.StateHasChanged();
+        }
     }
 }
