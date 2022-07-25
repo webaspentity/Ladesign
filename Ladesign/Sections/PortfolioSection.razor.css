@@ -1,5 +1,5 @@
 ﻿.portfolio-section {
-    padding: 0 15px;
+    padding: 50px 15px;
     box-sizing: border-box;
     overflow: hidden;
 }
@@ -18,5 +18,11 @@
     @media (max-width: 768px){
         .portfolio-section ::deep .container {
             row-gap: 30px;
+        }
+    }
+
+    @media (max-width: 450px){
+        .portfolio-section {
+            padding: 25px 15px;
         }
     }

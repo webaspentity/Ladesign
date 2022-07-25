@@ -1,6 +1,6 @@
 ﻿.top-section {
     min-height: 800px;
-    padding: 100px 15px;
+    padding: 50px 15px;
     display: flex;
     flex-direction: column;
     row-gap: 3rem;
@@ -62,5 +62,11 @@
 
     .top-section__subtitle {
         font-size: 1rem;
+    }
+}
+
+@media (max-width: 450px){
+    .top-section {
+        padding: 25px 15px;
     }
 }

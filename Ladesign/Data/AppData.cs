@@ -43,4 +43,10 @@ public static class AppData
         new ImageModel { Source = "images/portfolio/9.jpg", Alt = "Помещение"},
         new ImageModel { Source = "images/portfolio/10.jpg", Alt = "Квартира"}
     };
+
+    public static List<LinkModel> FooterSocials = new()
+    {
+        new LinkModel { Title="houzz", Url = "https://www.houzz.ru/"},
+        new LinkModel { Title="instagram", Url = "https://www.instagram.com/"}
+    };
 }

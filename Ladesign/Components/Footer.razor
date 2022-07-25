@@ -1,0 +1,15 @@
+﻿<footer class="footer">
+    <Container>
+        <div class="footer__socials">
+            @foreach (LinkModel link in AppData.FooterSocials)
+            {
+                <a class="footer__social" href="@link.Url" target="_blank">@link.Title</a>
+            }
+        </div>
+        <p class="footer__rights">© 2022 LA Design, all rights reserved.</p>
+    </Container>
+</footer>
+
+@code {
+
+}
