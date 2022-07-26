@@ -10,3 +10,7 @@
         color: #FFF;
         white-space: nowrap;
     }
+
+    .telephone a:focus{
+        outline: none;
+    }

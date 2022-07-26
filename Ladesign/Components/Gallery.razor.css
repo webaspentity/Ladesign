@@ -75,11 +75,12 @@
     width: 100%;
 }
 
-    .gallery__item {
-        position: relative;
-        height: 100%;
-        overflow: hidden;
-    }
+.gallery__item {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+    margin: 0;
+}
 
     .gallery__item img {
         transition: .5s ease;

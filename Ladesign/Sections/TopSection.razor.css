@@ -31,12 +31,16 @@
     line-height: 1.5;
     font-weight: 300;
 }
+    .top-section__title:focus{
+        outline: none;
+    }
 
-.top-section__subtitle {
-    font-size: 1.25rem;
-    line-height: 1.5;
-    font-weight: 300;
-}
+
+    .top-section__subtitle {
+        font-size: 1.25rem;
+        line-height: 1.5;
+        font-weight: 300;
+    }
 
 .top-section__title, .top-section__subtitle {
     margin: 0;

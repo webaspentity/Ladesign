@@ -37,3 +37,7 @@
     color: #FFF;
     white-space: nowrap;
 }
+
+.menu__link:focus{
+    outline: none;
+}

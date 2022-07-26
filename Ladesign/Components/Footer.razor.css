@@ -1,6 +1,5 @@
 ﻿.footer {
     background-color: #F7F7F7;
-    margin-top: 25px;
     padding: 15px;
 }
 
@@ -28,11 +27,15 @@
     letter-spacing: 0.15em;
 }
 
-.footer__rights {
-    font-size: 0.8125rem;
-    color: #878787;
-    margin: 0;
-    text-align: center;
-}
+    .footer__social:focus{
+        outline: none;
+    }
+
+    .footer__rights {
+        font-size: 0.8125rem;
+        color: #878787;
+        margin: 0;
+        text-align: center;
+    }
 
 

@@ -1,9 +1,9 @@
-﻿<nav class=@((open) ? "menu open" : "menu") @onclick="CloseMenu">
+﻿<nav class=@((open) ? "menu open" : "menu")>
     <ul class="menu__items">
         @foreach (LinkModel link in AppData.MenuLinks)
         {
             <li class="menu__item">
-                <a class="menu__link" href="@link.Url">@link.Title</a>
+                <a class="menu__link" href="@link.Url" @onclick="MenuLinkClick" @onclick:stopPropagation>@link.Title</a>
             </li>
         }
     </ul>
@@ -12,14 +12,12 @@
 @code {
     private bool open = false;
 
+    [Parameter]
+    public EventCallback MenuLinkClick { get; set; }
+
     public void ToggleMenu()
     {
         open = !open;
         StateHasChanged();
-    }
-
-    private void CloseMenu()
-    {
-        if (open) open = false;
     }
 }

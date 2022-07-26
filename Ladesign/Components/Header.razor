@@ -1,7 +1,9 @@
-﻿<header class="header" id="header">
+﻿@inject IJSRuntime js
+
+<header class="header" id="header">
     <Container>
         <Logo />
-        <Menu @ref=menu/>
+        <Menu @ref=menu MenuLinkClick="LinkClick"/>
         <Telephone />
         <Burger OnClick="ToggleMenu" @ref=burger/>
     </Container>
@@ -11,9 +13,18 @@
     private Menu? menu;
     private Burger? burger;
 
-    private void ToggleMenu()
+    private async void ToggleMenu()
     {
         burger?.ToggleBurger();
         menu?.ToggleMenu();
+        await js.InvokeVoidAsync("scrollToggle");
+    }
+
+    private void LinkClick()
+    {
+        if (burger.Active)
+        {
+            ToggleMenu();
+        }
     }
 }

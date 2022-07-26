@@ -4,6 +4,8 @@ namespace Ladesign.Data;
 
 public static class AppData
 {
+    public static Components.Burger Burger { get; set; }
+
     public static List<LinkModel> MenuLinks = new()
     {
         new LinkModel { Title = "Портфолио", Url = "/portfolio"},
