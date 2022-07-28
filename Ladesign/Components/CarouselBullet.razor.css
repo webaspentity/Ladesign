@@ -1,0 +1,21 @@
+﻿.carousel__bullet {
+    height: 1px;
+    background: #D5D5D5;
+    border: 0;
+    flex: 0 1 85px;
+}
+
+    .carousel__bullet:hover{
+        cursor: pointer;
+    }
+
+    .carousel__bullet.active {
+        height: 3px;
+        background: #393246;
+    }
+
+    @media (max-width: 450px){
+        .carousel__bullet {
+            flex: 0 1 60px;
+        }
+    }

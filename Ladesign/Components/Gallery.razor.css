@@ -82,13 +82,9 @@
     margin: 0;
 }
 
-    .gallery__item img {
-        transition: .5s ease;
+    .gallery__items .gallery__item:nth-child(1) {
+        grid-area: one;
     }
-
-.gallery__items .gallery__item:nth-child(1) {
-    grid-area: one;
-}
 
 .gallery__items .gallery__item:nth-child(2) {
     grid-area: two;
@@ -140,7 +136,7 @@
     text-decoration: none;
     font-weight: 300;
     row-gap: 1em;
-    transition: .5s ease;
+    transition: .7s ease;
     background: #000;
     opacity: 0.8;
 }

@@ -1,0 +1,128 @@
+﻿<div class="carousel">
+
+    @if (SlidesCount == 1)
+    {
+        <div class="carousel__items" style="transform:translate3d(@(-current*Step)%,0,0);" @ontouchstart="OnTouchStartHandler" @ontouchend="OnTouchEndHandler">
+            @if (Items is not null)
+            {
+                foreach (ImageModel item in Items)
+                {
+                    <div class="carousel__item">
+                        <img src="@item.Source" alt="@item.Alt" />
+                    </div>
+                }
+            }
+        </div>
+    }
+    @if (SlidesCount > 1)
+    {
+        <div class="carousel__items" style="transform:translate3d(@(-current*Step)%,0,0);">
+            @if (Items is not null)
+            {
+                foreach (ImageModel item in Items)
+                {
+                    <div class="carousel__item">
+                        <img src="@item.Source" alt="@item.Alt" />
+                    </div>
+                }
+            }
+        </div>
+    }
+
+    <div class="carousel__pagination">
+        <div class="carousel__bullets">
+            @if (Items is not null)
+            {
+                if (SlidesCount == 1)
+                {
+                    @for (int i = 0; i < Items.Count; i++)
+                    {
+                        <CarouselBullet Order="@i" @bind-Current="current" />
+                    }
+                }
+                else
+                {
+                    @for (int i = 0; i < count; i++)
+                    {
+                        <CarouselBullet Order="@i" @bind-Current="current" />
+                    }
+                }
+            }
+        </div>
+    </div>
+    <button class="carousel__arrow carousel__arrow_left"
+            type="button"
+            aria-label="Предыдущий слайд" @onclick="LeftArrowClick">
+    </button>
+    <button class="carousel__arrow carousel__arrow_right"
+            type="button"
+            aria-label="Следующий слайд" @onclick="RightArrowClick">
+    </button>
+</div>
+
+@code {
+    private int current = 0;
+    private double touchStart;
+    private double touchEnd;
+    private int count = 0;
+
+    [Parameter]
+    public List<ImageModel>? Items { get; set; }
+
+    [Parameter]
+    public int SlidesCount { get; set; } = 1;
+
+    [Parameter]
+    public int Step { get; set; } = 100;
+
+    private void OnTouchStartHandler(TouchEventArgs t)
+    {
+        touchStart = t.Touches[0].ClientX;
+    }
+
+    private void OnTouchEndHandler(TouchEventArgs t)
+    {
+        touchEnd = t.ChangedTouches[0].ClientX;
+
+        if ((touchStart - touchEnd) > 0 && Math.Abs(touchStart - touchEnd) > 150)
+        {
+            if (current < Items.Count - 1 && current < count - 1)
+            {
+                current += 1;
+            }
+        }
+        else if ((touchStart - touchEnd) < 0 && Math.Abs(touchStart - touchEnd) > 150)
+        {
+            if (current > 0)
+            {
+                current -= 1;
+            }
+        }
+    }
+
+    private void LeftArrowClick()
+    {
+        if (current > 0)
+        {
+            current -= 1;
+        }
+
+        Console.WriteLine("Step: " + Step);
+    }
+
+    private void RightArrowClick()
+    {
+        if (current < Items.Count - 1 && current < count - 1)
+        {
+            current += 1;
+        }
+
+        Console.WriteLine("Step: " + Step);
+    }
+
+    protected override void OnInitialized()
+    {
+        count = (Items.Count % SlidesCount == 0) ? Items.Count / SlidesCount : (int)(Items.Count / SlidesCount) + 1;
+
+    }
+}

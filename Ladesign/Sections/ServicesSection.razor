@@ -1,0 +1,18 @@
+﻿<section class="services-section">
+    <Container>
+        <SectionTitle>Зачем вам нужен дизайн-проект</SectionTitle>
+        <div class="services">
+            @foreach(ServiceModel item in AppData.Services)
+            {
+                <div class="service">
+                    <h3 class="service__title">@item.Title</h3>
+                    <p class="service__description">@item.Description</p>
+                </div>
+            }
+        </div>
+    </Container>
+</section>
+
+@code {
+
+}

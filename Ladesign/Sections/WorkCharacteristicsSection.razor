@@ -1,0 +1,36 @@
+﻿<section class="work-characteristics-section">
+    <Container>
+        <SectionTitle>@Item.Title</SectionTitle>
+        <div class="work-characteristics-section__content">
+            <table class="work-characteristics-section__table table">
+                <tbody>
+                    <tr>
+                        <td>Для кого</td>
+                        <td class="table__value">@Item.ForWhom</td>
+                    </tr>
+                    <tr>
+                        <td>общая площадь</td>
+                        <td class="table__value">@(Item.TotalArea)м2</td>
+                    </tr>
+                    <tr>
+                        <td>место расположения</td>
+                        <td class="table__value table__value_city">@Item.Location</td>
+                    </tr>
+                    <tr>
+                        <td>срок выполнения</td>
+                        <td class="table__value">@Item.WorkPeriod</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="work-characteristics-section__description">
+                <p>В этой квартире для молодого человека много бетона, кирпича и натурального дерева. Это лофт в классическом понимании и с очень интересными деталями.</p>
+                <p>В интерьере использовано довольно много различных материалов и текстур. Однако благодаря тому, что каждый материал применяется не единожды и находит себе продолжение в других помещениях, квартира смотрится цельным объёмом, где все текстуры дополняют друг друга и сочетаются между собой.</p>
+            </div>
+        </div>
+    </Container>
+</section>
+
+@code {
+    [Parameter]
+    public RoomSpecificsModel Item { get; set; }
+}

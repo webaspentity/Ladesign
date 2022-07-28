@@ -68,11 +68,11 @@
 @media (max-width: 450px) {
 
     .benefits-section__image {
-        height: min-content;
+        flex: 1 1 226px;
     }
 
         .benefits-section__image img {
-            height: 70.625%;
+            height: 100%;
         }
 
     .benefits-section__body {

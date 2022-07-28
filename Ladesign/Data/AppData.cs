@@ -6,6 +6,16 @@ public static class AppData
 {
     public static Components.Burger Burger { get; set; }
 
+    public static RoomSpecificsModel RoomSpecifics { get; set; } = new RoomSpecificsModel()
+    {
+        Title = "Дизайн 1-комнатной квартиры в стиле loft",
+        ForWhom = "молодой мужчина",
+        TotalArea = 60,
+        Location = "Краснодар",
+        WorkPeriod = "1 месяц",
+        Description = "В этой квартире для молодого человека много бетона, кирпича и натурального дерева. Это лофт в классическом понимании и с очень интересными деталями.В интерьере использовано довольно много различных материалов и текстур. Однако благодаря тому, что каждый материал применяется не единожды и находит себе продолжение в других помещениях, квартира смотрится цельным объёмом, где все текстуры дополняют друг друга и сочетаются между собой."
+    };
+
     public static List<LinkModel> MenuLinks = new()
     {
         new LinkModel { Title = "Портфолио", Url = "/portfolio"},
@@ -51,4 +61,30 @@ public static class AppData
         new LinkModel { Title="houzz", Url = "https://www.houzz.ru/"},
         new LinkModel { Title="instagram", Url = "https://www.instagram.com/"}
     };
+
+    public static List<ImageModel> WorkCarouselImages = new()
+    {
+        new ImageModel { Source = "images/portfolio/work/work_1.jpg", Alt = "Пример работы"},
+        new ImageModel { Source = "images/portfolio/work/work_2.jpg", Alt = "Пример работы"},
+        new ImageModel { Source = "images/portfolio/work/work_3.jpg", Alt = "Пример работы"},
+        new ImageModel { Source = "images/portfolio/work/work_4.jpg", Alt = "Пример работы"},
+        new ImageModel { Source = "images/portfolio/work/work_5.jpg", Alt = "Пример работы"}
+    };
+
+    public static List<ServiceModel> Services = new()
+    {
+        new ServiceModel { Title = "Чтобы ничего не упустить", Description = "Качественный дизайн-проект поможет избежать ошибок и переделок, которые приводят к лишним тратам и затягивают сроки ремонта"},
+        new ServiceModel { Title = "Получить нужный результат", Description = "С помощью профессионалов вы сможете донести до строителей свое видение будущего дизайна интерьера"},
+        new ServiceModel { Title = "Создать комфорт", Description = "Грамотная планировка и продуманная расстановка мебели сделает пространство эргономичным и функциональным"},
+        new ServiceModel { Title = "Сэкономить деньги", Description = "Дизайнер подберет и рассчитает нужное количество материалов с учетом площади помещения, что поможет избежать перерасхода"},
+        new ServiceModel { Title = "Потратить время на что-то более приятное", Description = "Вам не придется ездить по магазинам, месяцами подбирать и продумывать подходящие дизайнерские решения в интернете. Не нужно постоянно ездить на объект и созваниваться с рабочими, пытаться самостоятельно узаконить новые планировочные решения. Студия дизайна интерьера LА Design сделает все это за вас!"}
+    };
+
+    public static List<PriceModel> Prices = new()
+    {
+        new PriceModel { Name = "basic", Price = 2500m, Options = new() { "Обмерочный план", "План расстановки мебели", "План демонтажный", "План монтажный", "План полов с материалами", "-", "-", "-" } },
+        new PriceModel { Name = "pro", Price = 3500, Options = new(){ "Обмерочный план", "План расстановки мебели", "План демонтажный", "План монтажный", "План полов с материалами", "План экспликации", "-", "-" } },
+        new PriceModel { Name = "exclusive", Price = 5000, Options = new() { "Обмерочный план", "План расстановки мебели", "План демонтажный", "План монтажный", "План экспликации", "Чертежи сложных элементов и мебели (если заказывать отдельно - расчет индивидуальный)", "Спецификация осветительного оборудования", "Декорирование" } }
+    };
+
 }

@@ -1,0 +1,32 @@
+﻿<div class=@((Open) ? "price open" : "price")>
+    <div class="price__header" @onclick="()=> Open = !Open">
+        <p class="price__name">@Item?.Name</p>
+        <p class="price__value">от @Item?.Price.ToString("#.##") ₽</p>
+    </div>
+    <div class="price__content">
+        @foreach(string option in Item.Options)
+        {
+            <p class="price__option">@option</p>
+        }
+    </div>
+    <a class="price__link" href="/order">
+        <span>
+            Заказать
+        </span>
+        <span></span>
+    </a>
+
+    @if (Recommend)
+    {
+        <span class="price__recommend">Recommend</span>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public PriceModel? Item { get; set; }
+    [Parameter]
+    public bool Recommend { get; set; }
+    [Parameter]
+    public bool Open { get; set; }
+}

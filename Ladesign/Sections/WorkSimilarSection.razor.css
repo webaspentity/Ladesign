@@ -1,0 +1,81 @@
+﻿.work-similar-section {
+    padding: 50px 15px;
+}
+
+    .work-similar-section ::deep .section-title {
+        text-align: center;
+        font-size: 1.875rem;
+    }
+
+    .work-similar-section ::deep .container {
+        display: flex;
+        flex-direction: column;
+        row-gap: 50px;
+    }
+
+    .work-similar-section ::deep .carousel .carousel__items {
+/*        column-gap: 2.66666666666667%;*/
+        column-gap: 2.5%;
+        height: 270px;
+    }
+
+        .work-similar-section ::deep .carousel .carousel__items .carousel__item {
+            flex: 0 0 23%;
+        }
+
+            .work-similar-section ::deep .carousel .carousel__items .carousel__item img{
+                filter: brightness(80%);
+            }
+
+            .work-similar-section ::deep .carousel .carousel__arrow {
+                top: 115px;
+            }
+
+@media (max-width: 1024px) {
+    .work-similar-section ::deep .carousel .carousel__items .carousel__item {
+            flex: 0 0 31.6%;
+        }
+}
+
+@media (max-width: 768px) {
+    .work-similar-section ::deep .carousel .carousel__items .carousel__item {
+        flex: 0 0 100%;
+        scroll-snap-align: start;
+    }
+
+    .work-similar-section ::deep .carousel .carousel__items {
+        overflow-x: scroll;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+    }
+
+        .work-similar-section ::deep .carousel .carousel__items::-webkit-scrollbar {
+            background: #FFF;
+            height: 50px;
+        }
+
+        .work-similar-section ::deep .carousel .carousel__items::-webkit-scrollbar-thumb {
+            background: #393246;
+            width: 100px;
+            height: 4px;
+            border: 23px solid #FFF;
+        }
+
+        .work-similar-section ::deep .carousel .carousel__pagination {
+            display: none;
+        }
+}
+
+@media (max-width: 450px) {
+    .work-similar-section {
+        padding: 25px 15px;
+    }
+
+        .work-similar-section ::deep .section-title {
+            font-size: 1.25rem;
+        }
+
+        .work-similar-section ::deep .container {
+            row-gap: 25px;
+        }
+}

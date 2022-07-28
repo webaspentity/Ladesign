@@ -161,6 +161,10 @@
 
 /* ================================================================ END FONTS*/
 
+:root {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
     font-family: 'Roboto Condensed';

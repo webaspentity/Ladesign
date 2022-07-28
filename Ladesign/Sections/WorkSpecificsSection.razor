@@ -1,0 +1,26 @@
+﻿<section class="work-specifics-section">
+    <div class="work-specifics-section__image">
+        <img src="images/work_specifics_top_image.jpg" alt="Фон" />
+    </div>
+
+    <Container>
+        <div class="work-specifics-section__content">
+            <SectionTitle>особенности проекта</SectionTitle>
+            <div class="work-specifics-section__text">
+                <p>В этой квартире для молодого человека много бетона, кирпича и натурального дерева. Это лофт в классическом понимании и с очень интересными деталями.</p>
+                <p>В интерьере использовано довольно много различных материалов и текстур.</p>
+                <p>В этой квартире для молодого человека много бетона, кирпича и натурального дерева. Это лофт в классическом понимании и с очень интересными деталями.</p>
+            </div>
+            <div class="work-specifics-section__gallery">
+                @for(int i = 0; i < 4; i++)
+                {
+                    <img src="@AppData.WorkCarouselImages[i].Source" alt="@AppData.WorkCarouselImages[i].Alt"/>
+                }
+            </div>
+        </div>
+    </Container>
+</section>
+
+@code {
+
+}

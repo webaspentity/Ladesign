@@ -1,0 +1,22 @@
+﻿<section class="prices-section">
+    <Container>
+        <SectionTitle>СТОИМОСТЬ РАЗРАБОТКИ ДИЗАЙН-ПРОЕКТА</SectionTitle>
+        <div class="prices">
+            @if(AppData.Prices is not null)
+            {
+                for (int i = 0; i < AppData.Prices.Count; i++)
+                {
+                    <PriceCard 
+                    Item=@AppData.Prices[i] 
+                    Open=open 
+                    Recommend=@((AppData.Prices[i].Name.Equals("PRO", StringComparison.OrdinalIgnoreCase)) ? true : false)/>
+                }
+            }
+        </div>
+        <button class=@((open) ? "show-more opened" : "show-more") type="button" @onclick="()=> open = !open"><span>@((open) ? "свернуть" : "развернуть")</span><span></span></button>
+    </Container>
+</section>
+
+@code{
+    private bool open = false;
+}
