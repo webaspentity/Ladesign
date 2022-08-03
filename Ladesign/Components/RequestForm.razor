@@ -1,0 +1,149 @@
+﻿@inject IJSRuntime js
+
+<div class="form">
+    @if (Mini)
+    {
+        <EditForm Model="@miniModel" method="post" OnValidSubmit="OnValidSubmit" OnInvalidSubmit="OnInvalidSubmit">
+            <DataAnnotationsValidator />
+            @if (success)
+            {
+                <div class="success">
+                    <img src="images/icons/ok.png" alt="Ок" />
+                    <h3 class="success__title">Ваша Заявка успешно отправлена</h3>
+                    <p class="success__text">Спасибо, что обратились в нашу студию. <br />Наш дизайнер с вами свяжется</p>
+                    <div class="success__socials">
+                        <a href="https://www.houzz.ru/" target="_blank">houzz</a>
+                        <a href="https://facebook.com/" target="_blank">facebook</a>
+                        <a href="https://vk.com/" target="_blank">vkontakte</a>
+                        <a href="https://www.instagram.com/" target="_blank">instagram</a>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <fieldset class="form__fieldset">
+                    <div class="form__elements">
+                        <div class="form__element element @((string.IsNullOrWhiteSpace(miniModel.Name)) ? "no-value" : "has-value")">
+                            <InputText @bind-Value="miniModel.Name" tabindex="0" id="name" />
+                            <label class="element__placeholder" for="name">Ваше имя</label>
+                            <div class="element__error">
+                                <ValidationMessage For="@(() => @miniModel.Name)" />
+                            </div>
+                        </div>
+
+                        <div class="form__element element @((string.IsNullOrWhiteSpace(miniModel.Telephone)) ? "no-value" : "has-value")">
+                            <InputMask @bind-Value="miniModel.Telephone" tabindex="0" id="telephone" data-mask="+7 (000) 000-00-00" />
+                            <label class="element__placeholder" for="telephone">Ваш телефон: (xxx) xxx-xx-xx</label>
+                            <div class="element__error">
+                                <ValidationMessage For="@(() => @miniModel.Telephone)" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form__footer">
+                        <button type="submit" class="form__button">
+                            <span>Отправить</span>
+                            <span></span>
+                        </button>
+                        <p class="form__agreement">
+                            Нажимая на кнопку, я даю <a href="/agreement">согласие на обработку персональных данных</a>
+                        </p>
+                    </div>
+                </fieldset>
+            }
+        </EditForm>
+    }
+    else
+    {
+        <EditForm Model="@model" method="post" OnValidSubmit="OnValidSubmit" OnInvalidSubmit="OnInvalidSubmit">
+            <DataAnnotationsValidator />
+            @if (success)
+            {
+                <p class="form__success">Запрос успешно отправлен!</p>
+            }
+            <fieldset class="form__fieldset">
+
+                <div class="form__elements">
+                    <div class="form__element element @((string.IsNullOrWhiteSpace(model.Name)) ? "no-value" : "has-value")">
+                        <InputText @bind-Value="model.Name" tabindex="0" id="name" />
+                        <label class="element__placeholder" for="name">Ваше имя</label>
+                        <div class="element__error">
+                            <ValidationMessage For="@(() => @model.Name)" />
+                        </div>
+                    </div>
+
+                    <div class="form__element element @((string.IsNullOrWhiteSpace(model.Email)) ? "no-value" : "has-value")">
+                        <InputText @bind-Value="model.Email" tabindex="0" id="email" />
+                        <label class="element__placeholder" for="email">Ваша эл.почта</label>
+                        <div class="element__error">
+                            <ValidationMessage For="@(() => @model.Email)" />
+                        </div>
+                    </div>
+
+                    <div class="form__element element @((string.IsNullOrWhiteSpace(model.Answer)) ? "no-value" : "has-value")">
+                        <div class="element__textfield" contenteditable="true" @onfocusout="OnFocusOut" @ref="element"></div>
+                        <label class="element__placeholder">Ваш вопрос</label>
+                        <div class="element__error">
+                            <ValidationMessage For="@(() => @model.Answer)" />
+                        </div>
+                    </div>
+
+                    <div class="form__element element-file">
+                        <label class="element-file__label" tabindex="0" for="file">
+                            <span></span>
+                            <span>Прикрепить файл</span>
+                            <InputFile class="element-file__input" tabindex="-1" OnChange="LoadFiles" id="file" />
+                        </label>
+                        @if (model.File is not null)
+                        {
+                            <div class="element-file__options">
+                                <p class="element-file__name">@model.File?.Name</p>
+                                <button type="button"
+                                class="element-file__delete"
+                                @onclick="()=> model.File = null">
+                                    Удалить
+                                </button>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="form__footer">
+                    <button type="submit" class="form__button">
+                        <span>Отправить</span>
+                        <span></span>
+                    </button>
+                    <p class="form__agreement">
+                        Нажимая на кнопку, я даю <a href="/agreement">согласие на обработку персональных данных</a>
+                    </p>
+                </div>
+
+            </fieldset>
+        </EditForm>
+    }
+</div>
+
+@code {
+    private RequestModel model = new();
+    private MiniRequestModel miniModel = new();
+    private ElementReference element;
+    private bool success = false;
+
+    private void OnValidSubmit() { success = true; if (Mini) miniModel = new(); else model = new(); }
+
+    private void OnInvalidSubmit() { if (success) success = false; }
+
+    [Parameter]
+    public bool Mini { get; set; } = false;
+
+    private async void OnFocusOut()
+    {
+        model.Answer = await js.InvokeAsync<string>("getEditableContent", element);
+        StateHasChanged();
+    }
+
+    private void LoadFiles(InputFileChangeEventArgs e)
+    {
+        model.File = e.File;
+    }
+}
+
+

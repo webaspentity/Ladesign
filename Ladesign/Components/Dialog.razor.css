@@ -1,0 +1,49 @@
+﻿.modal {
+    margin: auto;
+    padding: 0;
+    border: none;
+    border-radius: 10px;
+    display: block;
+    transform: scale(0);
+    transition: .4s ease;
+    visibility: hidden;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+    .modal[open]{
+        visibility: visible;
+        transform: scale(1);
+    }
+
+    .modal::backdrop {
+        background-color: rgba(0,0,0,0.7);
+    }
+
+.modal__close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: transparent;
+    padding: 5px;
+    color: #393246;
+}
+
+    .modal__close:hover {
+        cursor: pointer;
+    }
+
+.modal__content {
+    background: #FFF;
+    padding: 40px 2rem 2rem 2rem;
+    align-self: center;
+    justify-self: center;
+}

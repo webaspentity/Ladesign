@@ -24,7 +24,16 @@ window.scrollUnlock = () => {
 window.scrollToggle = () => {
     if (lock) scrollUnlock();
     else scrollLock();
-    console.log('Scroll lock toggled...');
 }
 
+window.getEditableContent = (element) => {
+    return element.textContent;
+}
 
+window.openModal = (element) => {
+    element.showModal();
+}
+
+window.closeModal = (element) => {
+    element.close();
+}

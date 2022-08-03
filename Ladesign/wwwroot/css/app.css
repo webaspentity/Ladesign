@@ -170,6 +170,8 @@ body {
     font-family: 'Roboto Condensed';
     font-weight: normal;
     background: #FFF;
+    min-width: 100%;
+    margin: 0 auto;
 }
 
 .wrapper{

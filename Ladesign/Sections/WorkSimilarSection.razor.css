@@ -14,7 +14,6 @@
     }
 
     .work-similar-section ::deep .carousel .carousel__items {
-/*        column-gap: 2.66666666666667%;*/
         column-gap: 2.5%;
         height: 270px;
     }
@@ -38,6 +37,10 @@
 }
 
 @media (max-width: 768px) {
+    .work-similar-section ::deep .carousel .carousel__items{
+        transform: translate3d(0,0,0) !important;
+    }
+
     .work-similar-section ::deep .carousel .carousel__items .carousel__item {
         flex: 0 0 100%;
         scroll-snap-align: start;

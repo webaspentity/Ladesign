@@ -1,8 +1,23 @@
 ﻿<section class="request-section">
     <Container>
-        <button type="button" aria-label="Оставить заявку на проект" class="request-section__button">
+        <button 
+            type="button" 
+            aria-label="Оставить заявку на проект" 
+            class="request-section__button" 
+            @onclick="Open">
             Оставить заявку на проект
         </button>
+        <Dialog @ref="dialog">
+            <RequestForm Mini=true />
+        </Dialog>
     </Container>
 </section>
 
+@code {
+    private Dialog dialog;
+
+    private void Open()
+    {
+        dialog.OpenModal();
+    }
+}

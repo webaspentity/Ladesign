@@ -1,0 +1,27 @@
+﻿@inject IJSRuntime js
+
+<dialog class="modal" @ref="dialog" @onclick="CloseModal" @onclick:stopPropagation>
+    <div class="modal__content" @onclick:stopPropagation>
+        @ChildContent
+        <button class="modal__close" @onclick="CloseModal">&#10006;</button>
+    </div>
+</dialog>
+
+@code {
+    private ElementReference dialog;
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    public async void OpenModal()
+    {
+        await js.InvokeVoidAsync("openModal", dialog);
+        await js.InvokeVoidAsync("scrollLock");
+    }
+
+    public async void CloseModal()
+    {
+        await js.InvokeVoidAsync("closeModal", dialog);
+        await js.InvokeVoidAsync("scrollUnlock");
+    }
+}
