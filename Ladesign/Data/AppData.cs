@@ -5,6 +5,7 @@ namespace Ladesign.Data;
 public static class AppData
 {
     public static Components.Burger Burger { get; set; }
+    public static Components.Header Header { get; set; }
 
     public static RoomSpecificsModel RoomSpecifics { get; set; } = new RoomSpecificsModel()
     {

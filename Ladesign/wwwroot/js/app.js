@@ -40,12 +40,11 @@ window.closeModal = (element) => {
 
 window.runOnScroll = () => {
     if (window.location.pathname === "/") {
-        console.log('Location: ' + window.location.pathname);
-        const header = document.querySelector('.header');
-        if (pageYOffset >= header.clientHeight) {
-            if (!header.classList.contains('fixed')) header.classList.add('fixed');
-        } else {
-            if (header.classList.contains('fixed')) header.classList.remove('fixed');
+        const header = document.getElementById('header');
+        if (!header.classList.contains('fixed') && pageYOffset >= header.clientHeight) {
+            header.classList.add('fixed');
+        } else if (pageYOffset < header.clientHeight && header.classList.contains('fixed')){
+            header.classList.remove('fixed');
         }
     }
 }
@@ -76,16 +75,11 @@ window.debounce = (func, ms, now) => { // объявляем функцию debo
 };
 
 window.setHeader = () => {
-    if (window.location.pathname !== "/") {
-        const header = document.querySelector('.header');
-        header.classList.add('fixed');
-    } else {
-        header.classList.remove('fixed');
-    }
+    const header = document.getElementById('header');
+    if (header.classList.contains('fixed')) header.classList.remove('fixed');
 }
 
-window.addEventListener('scroll', debounce(runOnScroll, 100));
+window.addEventListener('scroll', runOnScroll);
 
-window.addEventListener("click", debounce(setHeader, 100));
 
 

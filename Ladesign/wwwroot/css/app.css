@@ -181,7 +181,7 @@ body {
     animation: pageload .8s ease;
 }
 
-.page__content{
+.main__content{
     box-sizing: border-box;
 }
 

@@ -1,1 +1,10 @@
-﻿<a class="logo" href="/" aria-label="На главную"></a>
+﻿@inject IJSRuntime js
+
+<a class="logo" href="/" aria-label="На главную" @onclick="OnClick"></a>
+
+@code{
+    private async void OnClick()
+    {
+        await js.InvokeVoidAsync("setHeader");
+    }
+}

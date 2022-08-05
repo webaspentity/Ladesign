@@ -1,15 +1,29 @@
-﻿<header class="header" id="header">
+﻿<header class=@cssClass id="header">
     <Container>
         <Logo />
-        <Menu @ref=menu MenuLinkClick="LinkClick"/>
+        <Menu @ref=menu MenuLinkClick="LinkClick" />
         <Telephone />
-        <Burger OnClick="ToggleMenu" @ref=burger/>
+        <Burger OnClick="ToggleMenu" @ref=burger />
     </Container>
 </header>
 
 @code {
+    private string cssClass = "header";
     private Menu? menu;
     private Burger? burger;
+
+    [Parameter]
+    public string? Class
+    {
+        get => cssClass;
+        set
+        {
+            if (!cssClass.Contains(value))
+            {
+                cssClass = cssClass + $" {value}";
+            }
+        }
+    }
 
     private void ToggleMenu()
     {
@@ -23,6 +37,11 @@
         if (burger.Active)
         {
             ToggleMenu();
+        }
+
+        if (!cssClass.Contains("fixed"))
+        {
+            cssClass = cssClass + " fixed";
         }
     }
 }
