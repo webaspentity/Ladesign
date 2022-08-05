@@ -22,11 +22,16 @@
     display: flex;
     flex-direction: column;
     row-gap: 2em;
+    padding: 2em 0 0 0;
 }
 
-.element {
-    position: relative;
-}
+    .form__element:first-child{
+        /*margin-top: 2em;*/
+    }
+
+    .element {
+        position: relative;
+    }
 
     .element ::deep input {
         border: none;
@@ -69,12 +74,7 @@
     top: 0.625em;
 }
 
-.has-value .element__placeholder {
-    top: -1.1em;
-    font-size: 0.8125em;
-}
-
-.element ::deep input:focus + .element__placeholder, .element ::deep .element__textfield:focus + .element__placeholder {
+.element ::deep input:focus + .element__placeholder, .element ::deep .element__textfield:focus + .element__placeholder, .has-value .element__placeholder {
     top: -1.1em;
     font-size: 0.8125em;
 }

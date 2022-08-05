@@ -7,7 +7,6 @@
     transform: scale(0);
     transition: .4s ease;
     visibility: hidden;
-    position: fixed;
     left: 0;
     top: 0;
     right: 0;

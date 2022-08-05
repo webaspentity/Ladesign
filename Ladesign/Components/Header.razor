@@ -1,6 +1,4 @@
-﻿@inject IJSRuntime js
-
-<header class="header" id="header">
+﻿<header class="header" id="header">
     <Container>
         <Logo />
         <Menu @ref=menu MenuLinkClick="LinkClick"/>
@@ -13,11 +11,11 @@
     private Menu? menu;
     private Burger? burger;
 
-    private async void ToggleMenu()
+    private void ToggleMenu()
     {
         burger?.ToggleBurger();
         menu?.ToggleMenu();
-        await js.InvokeVoidAsync("scrollToggle");
+
     }
 
     private void LinkClick()

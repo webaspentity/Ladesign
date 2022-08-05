@@ -1,6 +1,6 @@
 ﻿@inject IJSRuntime js
 
-<dialog class="modal" @ref="dialog" @onclick="CloseModal" @onclick:stopPropagation>
+<dialog class="modal" @ref="dialog" @onclick="CloseModal" @onclick:stopPropagation @attributes="InputAttributes" aria-hidden="true">
     <div class="modal__content" @onclick:stopPropagation>
         @ChildContent
         <button class="modal__close" @onclick="CloseModal">&#10006;</button>
@@ -12,16 +12,16 @@
 
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
+    [Parameter]
+    public Dictionary<string, object>? InputAttributes { get; set; }
 
     public async void OpenModal()
     {
         await js.InvokeVoidAsync("openModal", dialog);
-        await js.InvokeVoidAsync("scrollLock");
     }
 
     public async void CloseModal()
     {
         await js.InvokeVoidAsync("closeModal", dialog);
-        await js.InvokeVoidAsync("scrollUnlock");
     }
 }

@@ -1,6 +1,11 @@
 ﻿<section class="portfolio-section">
     <Container>
         <SectionTitle >Портфолио</SectionTitle>
-        <Gallery />
+        <Gallery ShowMore="ShowMore"/>
     </Container>
 </section>
+
+@code{
+    [Parameter]
+    public bool ShowMore { get; set; }
+}

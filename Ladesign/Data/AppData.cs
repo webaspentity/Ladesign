@@ -44,16 +44,16 @@ public static class AppData
         new ImageModel { Source = "images/portfolio/8.jpg", Alt = "Помещение"},
         new ImageModel { Source = "images/portfolio/9.jpg", Alt = "Помещение"},
         new ImageModel { Source = "images/portfolio/10.jpg", Alt = "Квартира"},
-        new ImageModel { Source = "images/portfolio/1.jpg", Alt = "Квартира"},
-        new ImageModel { Source = "images/portfolio/2.jpg", Alt = "Квартира"},
-        new ImageModel { Source = "images/portfolio/3.jpg", Alt = "Помещение"},
-        new ImageModel { Source = "images/portfolio/4.jpg", Alt = "Дом"},
-        new ImageModel { Source = "images/portfolio/5.jpg", Alt = "Дом"},
-        new ImageModel { Source = "images/portfolio/6.jpg", Alt = "Квартира"},
-        new ImageModel { Source = "images/portfolio/7.jpg", Alt = "Квартира"},
-        new ImageModel { Source = "images/portfolio/8.jpg", Alt = "Помещение"},
-        new ImageModel { Source = "images/portfolio/9.jpg", Alt = "Помещение"},
-        new ImageModel { Source = "images/portfolio/10.jpg", Alt = "Квартира"}
+        new ImageModel { Source = "images/portfolio/11.jpg", Alt = "Квартира"},
+        new ImageModel { Source = "images/portfolio/12.jpg", Alt = "Квартира"},
+        new ImageModel { Source = "images/portfolio/13.jpg", Alt = "Дом"},
+        new ImageModel { Source = "images/portfolio/14.jpg", Alt = "Помещение"},
+        new ImageModel { Source = "images/portfolio/15.jpg", Alt = "Помещение"},
+        new ImageModel { Source = "images/portfolio/16.jpg", Alt = "Квартира"},
+        new ImageModel { Source = "images/portfolio/17.jpg", Alt = "Дом"},
+        new ImageModel { Source = "images/portfolio/18.jpg", Alt = "Квартира"},
+        new ImageModel { Source = "images/portfolio/19.jpg", Alt = "Помещение"},
+        new ImageModel { Source = "images/portfolio/20.jpg", Alt = "Помещение"}
     };
 
     public static List<LinkModel> FooterSocials = new()

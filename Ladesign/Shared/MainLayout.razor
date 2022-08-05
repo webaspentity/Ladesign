@@ -2,17 +2,10 @@
 
 <Header />
 
-<main class="page" @onscroll="OnScroll">
+<main class="page">
     <article class="page__content">
         @Body
     </article>
 </main>
 
 <Footer />
-
-@code{
-    private void OnScroll()
-    {
-        Console.WriteLine("Scrolling...");
-    }
-}

@@ -10,7 +10,7 @@
         <div class="gallery__items">
             @if (Items is not null)
             {
-                foreach (ImageModel item in Items)
+                foreach (ImageModel item in Items.Take(10))
                 {
                     <figure class="gallery__item">
                         <img src="@item.Source" alt="@item.Alt" />
@@ -19,6 +19,21 @@
                 }
             }
         </div>
+        @if (take == 20)
+        {
+            <div class="gallery__items">
+                @if (Items is not null)
+                {
+                    foreach (ImageModel item in Items.Skip(10).Take(10))
+                    {
+                        <figure class="gallery__item">
+                            <img src="@item.Source" alt="@item.Alt" />
+                            <a href="/portfolio/work"><span>loft</span><span>Unique collection</span><img alt="Нажмите" src="images/icons/click.png" /></a>
+                        </figure>
+                    }
+                }
+            </div>
+        }
     }
     else
     {
@@ -36,12 +51,29 @@
         </div>
     }
 
+    @if (ShowMore && !disabled)
+    {
+        <button class="gallery__show-more" @onclick="ShowAll" type="button">показать еще работы</button>
+    }
 </div>
 
 @code {
     private int currentFilter = 0;
+    private int take;
+    private bool disabled = false;
 
-    private List<ImageModel>? Items = AppData.Images.Take<ImageModel>(10).ToList<ImageModel>();
+    private List<ImageModel>? Items;
+
+    [Parameter]
+    public bool ShowMore { get; set; } = false;
+
+    private void ShowAll()
+    {
+        currentFilter = 0;
+        take = 20;
+        Items = AppData.Images.Take<ImageModel>(take).ToList<ImageModel>();
+        disabled = true;
+    }
 
 
     private void Filter(int i)
@@ -50,10 +82,16 @@
 
         switch (currentFilter)
         {
-            case 0: Items = AppData.Images.Take(10).ToList<ImageModel>(); break;
+            case 0: Items = AppData.Images.Take(take).ToList<ImageModel>(); break;
             case 1: Items = AppData.Images.Where(image => image.Alt.Equals("Квартира")).ToList<ImageModel>(); break;
             case 2: Items = AppData.Images.Where(image => image.Alt.Equals("Дом")).ToList<ImageModel>(); break;
             case 3: Items = AppData.Images.Where(image => image.Alt.Equals("Помещение")).ToList<ImageModel>(); break;
         }
+    }
+
+    protected override void OnInitialized()
+    {
+        take = 10;
+        Items = AppData.Images.Take<ImageModel>(take).ToList<ImageModel>();
     }
 }
