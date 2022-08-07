@@ -174,9 +174,6 @@ body {
     margin: 0 auto;
 }
 
-.wrapper{
-}
-
 .page{
     animation: pageload .8s ease;
 }
@@ -193,3 +190,10 @@ body {
         opacity: 1;
     }
 }
+
+@media (min-width: 768.2px){
+    body {
+        overflow-y: auto !important;
+    }
+}
+

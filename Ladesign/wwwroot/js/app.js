@@ -1,85 +1,146 @@
-﻿let lock = false;
+﻿'use strict';
 
-window.scrollLock = () => {
-    let pagePosition = window.scrollY;
-    document.body.style.position = 'fixed';
-    lock = true;
-    document.body.dataset.position = pagePosition;
-    document.body.style.top = - pagePosition + 'px';
-    document.documentElement.style.scrollBehavior = 'auto';
-}
+//let lock = false;
+let bodyDisabled = false;
+let dotnetHeader;
 
-window.scrollUnlock = () => {
-    let pagePosition = parseInt(document.body.dataset.position, 10);
-    document.body.style.position = '';
-    document.body.style.top = '';
-    lock = false;
-    window.scrollTo({
-        top: pagePosition,
-        behavior: "auto"
-    });
-    document.documentElement.style.scrollBehavior = 'smooth';
-}
+//window.scrollLock = () => {
+//    let pagePosition = window.scrollY;
+//    document.body.style.position = 'fixed';
+//    lock = true;
+//    document.body.dataset.position = pagePosition;
+//    document.body.style.top = - pagePosition + 'px';
+//    document.documentElement.style.scrollBehavior = 'auto';
+//}
 
-window.scrollToggle = () => {
-    if (lock) scrollUnlock();
-    else scrollLock();
-}
+//window.scrollUnlock = () => {
+//    let pagePosition = parseInt(document.body.dataset.position, 10);
+//    document.body.style.position = '';
+//    document.body.style.top = '';
+//    lock = false;
+//    window.scrollTo({
+//        top: pagePosition,
+//        behavior: "auto"
+//    });
+//    document.documentElement.style.scrollBehavior = 'smooth';
+//}
+
+
+
+//window.scrollToggle = () => {
+//    if (lock) scrollUnlock();
+//    else scrollLock();
+//}
 
 window.getEditableContent = (element) => {
     return element.textContent;
 }
 
+//===========================================================
+
+window.preventScroll = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    return false;
+}
+
+window.disableBody = () => {
+    document.body.addEventListener('wheel', preventScroll, { passive: false });
+    bodyDisabled = true;
+}
+
+window.enableBody = () => {
+    document.body.removeEventListener('wheel', preventScroll, { passive: false });
+    bodyDisabled = false;
+}
+
+//================================================================
+
 window.openModal = (element) => {
     element.showModal();
+    /*scrollLock();*/
+    disableBody();
 }
 
 window.closeModal = (element) => {
     element.close();
+    /*scrollUnlock();*/
+    enableBody();
 }
+
 
 window.runOnScroll = () => {
     if (window.location.pathname === "/") {
         const header = document.getElementById('header');
         if (!header.classList.contains('fixed') && pageYOffset >= header.clientHeight) {
             header.classList.add('fixed');
-        } else if (pageYOffset < header.clientHeight && header.classList.contains('fixed')){
+        } else if (pageYOffset < header.clientHeight && header.classList.contains('fixed')) {
             header.classList.remove('fixed');
         }
     }
 }
 
-window.debounce = (func, ms, now) => { // объявляем функцию debounce
+window.debounce = (func, ms, now) => {
 
-    let onLast // переменная отвечает за вызов функции func после того, как прошло время ожидания ms от последнего события движения курсора
+    let onLast
 
-    return function () { // эта функция запускается при каждом событии движения курсора
+    return function () {
 
-        const context = this // запоминаем передаваемую функцию func
-        const args = arguments // запоминаем параметры передаваемой функции func
+        const context = this
+        const args = arguments
 
-        const onFirst = now && !onLast // если хотим запустить функцию func при первом событии движения курсора и время ожидания не установлено
+        const onFirst = now && !onLast
 
-        clearTimeout(onLast) // сбрасываем время ожидания ms
+        clearTimeout(onLast)
 
-        onLast = setTimeout(() => { // устанавливаем время ожидания
+        onLast = setTimeout(() => {
 
-            onLast = null // очищаем переменную onLast
-            if (!now) func.apply(context, args) // если при первом событии движения курсора функция func не была вызвана, то вызываем ее когда время ожидания ms закончилось
+            onLast = null
+            if (!now) func.apply(context, args)
 
-        }, ms) // подставляем значение параметра ms
+        }, ms)
 
-        if (onFirst) func.apply(context, args) // запускаем функцию func при первом событии движения курсора
+        if (onFirst) func.apply(context, args)
 
     }
 };
 
-window.setHeader = () => {
+window.setHeaderNoFixed = () => {
     const header = document.getElementById('header');
     if (header.classList.contains('fixed')) header.classList.remove('fixed');
 }
 
+window.setHeaderFixed = () => {
+    const header = document.getElementById('header');
+    if (!header.classList.contains('fixed')) header.classList.add('fixed');
+}
+
+window.toggleBodyOverflow = () => {
+    if (document.body.style.overflowY === 'hidden') document.body.style.overflowY = 'auto';
+    else document.body.style.overflowY = 'hidden';
+}
+
 window.addEventListener('scroll', runOnScroll);
 
+window.toggleMenu = () => {
+    dotnetHeader.invokeMethodAsync("ToggleMenu");
+    console.log('ToggleMenu from JS...');
+    dotnetHeader.invokeMethodAsync("Refresh");
+    console.log('Refresh from JS...');
+}
 
+window.runOnResize = () => {
+    if (document.body.clientWidth > 768) {
+        if (bodyDisabled)  {
+            enableBody();
+            toggleMenu();
+            console.log('Body disabled (runOnResize)? ' + bodyDisabled);
+        }
+    }
+}
 
+window.addEventListener('resize', debounce(runOnResize, 100));
+
+window.setHeader = (dotnetObj) => {
+    dotnetHeader = dotnetObj;
+}

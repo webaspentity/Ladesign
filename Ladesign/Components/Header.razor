@@ -1,4 +1,6 @@
-﻿<header class=@cssClass id="header">
+﻿@inject IJSRuntime js
+
+<header class=@cssClass id="header">
     <Container>
         <Logo />
         <Menu @ref=menu MenuLinkClick="LinkClick" />
@@ -11,6 +13,7 @@
     private string cssClass = "header";
     private Menu? menu;
     private Burger? burger;
+    private DotNetObjectReference<Header> refHeader;
 
     [Parameter]
     public string? Class
@@ -25,14 +28,19 @@
         }
     }
 
-    private void ToggleMenu()
+    [JSInvokable("ToggleMenu")]
+    public void ToggleMenu()
     {
         burger?.ToggleBurger();
         menu?.ToggleMenu();
-
     }
 
-    private void LinkClick()
+    private async Task SetHeaderFixed()
+    {
+        await js.InvokeVoidAsync("setHeaderFixed");
+    }
+
+    private async void LinkClick()
     {
         if (burger.Active)
         {
@@ -43,5 +51,24 @@
         {
             cssClass = cssClass + " fixed";
         }
+
+        await SetHeaderFixed();
     }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            refHeader = DotNetObjectReference.Create(this);
+            js.InvokeVoidAsync("setHeader", refHeader);
+        }
+    }
+
+    [JSInvokable("Refresh")]
+    public void Refresh()
+    {
+        burger?.Refresh();
+        Console.WriteLine("Refresh...");
+    }
+
 }

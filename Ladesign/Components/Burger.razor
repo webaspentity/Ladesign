@@ -1,4 +1,6 @@
-﻿<button class=@((Active) ? "burger active" : "burger")
+﻿@inject IJSRuntime js
+
+<button class=@((Active) ? "burger active" : "burger")
         @onclick="OnClick"
         type="button" aria-label="Переключить меню">
     <span></span>
@@ -15,5 +17,19 @@
     public async void ToggleBurger()
     {
         Active = !Active;
+
+        if (Active)
+        {
+            await js.InvokeVoidAsync("disableBody");
+        }
+        else
+        {
+            await js.InvokeVoidAsync("enableBody");
+        }
+    }
+
+    public void Refresh()
+    {
+        StateHasChanged();
     }
 }

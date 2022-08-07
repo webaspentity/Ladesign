@@ -42,6 +42,41 @@
     outline: none;
 }
 
-.menu.open .menu__link{
-    color: #fff;
+@media (max-width: 768px){
+    .menu {
+        height: 0;
+        overflow: hidden;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: #080808;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: .4s ease;
+        z-index: 2;
+    }
+
+    .menu__items {
+        flex-direction: column;
+        transform: scale(0);
+        transition: .4s ease;
+        overflow-y: auto;
+    }
+
+    .menu.open {
+        position: fixed;
+        height: 100vh;
+        
+    }
+
+    .menu__items {
+        transform: scale(1);
+    }
+
+        .menu.open .menu__items a {
+            display: block;
+            padding: 5px;
+        }
 }

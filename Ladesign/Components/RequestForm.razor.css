@@ -40,16 +40,22 @@
         font-family: inherit;
     }
 
-    .element ::deep input, .element ::deep .element__textfield {
-        border-bottom: 1px solid #777777;
-        color: #777777;
-        padding: 0.625em 0;
-    }
-
-        .element ::deep input:focus, .element ::deep .element__textfield:focus {
-            outline: none;
-            border-bottom: 2px solid #393246;
+        .element ::deep input.invalid, .element ::deep input.invalid:focus{
+            box-shadow: none;
         }
+
+
+        .element ::deep input, .element ::deep .element__textfield {
+            box-shadow: 0 1px 0px 0px #777;
+            color: #777777;
+            padding: 0.625em 0;
+            transition: .2s ease;
+        }
+
+            .element ::deep input:focus, .element ::deep .element__textfield:focus {
+                outline: none;
+                box-shadow: 0 2px 0px 0px #393246;
+            }
 
         .element ::deep input.invalid {
             border-bottom: 2px solid #EB5757;

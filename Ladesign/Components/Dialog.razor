@@ -1,6 +1,6 @@
 ﻿@inject IJSRuntime js
 
-<dialog class="modal" @ref="dialog" @onclick="CloseModal" @onclick:stopPropagation @attributes="InputAttributes" aria-hidden="true">
+<dialog class="modal" @ref="dialog" @onclick="CloseModal" @onclick:stopPropagation @attributes="InputAttributes" aria-hidden="true" tabindex="-1">
     <div class="modal__content" @onclick:stopPropagation>
         @ChildContent
         <button class="modal__close" @onclick="CloseModal">&#10006;</button>

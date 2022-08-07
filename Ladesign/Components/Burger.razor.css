@@ -54,3 +54,9 @@
         top: calc(50% - var(--line-height) / 2);
         transform: rotate3d(0, 0, 1, -45deg);
     }
+
+@media (max-width: 768px) {
+        .burger {
+            display: inline-block;
+        }
+}
