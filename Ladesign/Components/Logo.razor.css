@@ -1,10 +1,1 @@
-﻿.logo {
-    display: inline-block;
-    width: 45px;
-    height: 45px;
-    background: url('images/icons/logo.png') center no-repeat;
-}
-
-.logo:focus{
-    outline: none;
-}
+﻿.logo{display:inline-block;width:45px;height:45px;background:url('images/icons/logo.png') center no-repeat}.logo:focus{outline:none}
