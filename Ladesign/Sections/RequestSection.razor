@@ -14,10 +14,10 @@
 </section>
 
 @code {
-    private Dialog dialog;
+    private Dialog? dialog;
 
     private void Open()
     {
-        dialog.OpenModal();
+        dialog?.OpenModal();
     }
 }

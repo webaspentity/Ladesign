@@ -1,6 +1,14 @@
 ﻿@page "/contacts"
+@inject IJSRuntime js
 
 <div class="page">
     <PageTitle>Контакты</PageTitle>
     <ContactsSection />
 </div>
+
+@code{
+    protected override void OnAfterRender(bool firstRender)
+    {
+        js.InvokeVoidAsync("setHeaderFixed");
+    }
+}

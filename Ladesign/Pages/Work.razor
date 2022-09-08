@@ -1,4 +1,5 @@
 ﻿@page "/portfolio/work"
+@inject IJSRuntime js
 
 <PageTitle>Работа</PageTitle>
 
@@ -17,3 +18,10 @@
 
     <RequestSection />
 </div>
+
+@code{
+    protected override void OnAfterRender(bool firstRender)
+    {
+        js.InvokeVoidAsync("setHeaderFixed");
+    }
+}

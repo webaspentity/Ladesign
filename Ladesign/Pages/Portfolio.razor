@@ -1,4 +1,5 @@
 ﻿@page "/portfolio"
+@inject IJSRuntime js
 
 <PageTitle>Портфолио</PageTitle>
 
@@ -6,3 +7,10 @@
     <PortfolioSection ShowMore=true />
     <RequestSection />
 </div>
+
+@code{
+    protected override void OnAfterRender(bool firstRender)
+    {
+        js.InvokeVoidAsync("setHeaderFixed");
+    }
+}

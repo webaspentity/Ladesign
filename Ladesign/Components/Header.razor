@@ -40,7 +40,7 @@
         await js.InvokeVoidAsync("setHeaderFixed");
     }
 
-    private async void LinkClick()
+    private void LinkClick()
     {
         if (burger.Active)
         {
@@ -51,8 +51,6 @@
         {
             cssClass = cssClass + " fixed";
         }
-
-        await SetHeaderFixed();
     }
 
     protected override void OnAfterRender(bool firstRender)

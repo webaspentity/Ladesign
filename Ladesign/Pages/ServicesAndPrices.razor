@@ -1,4 +1,5 @@
 ﻿@page "/services-and-prices"
+@inject IJSRuntime js
 
 <PageTitle>Услуги и цены</PageTitle>
 
@@ -12,3 +13,9 @@
     <RequestSection />
 </div>
 
+@code{
+    protected override void OnAfterRender(bool firstRender)
+    {
+        js.InvokeVoidAsync("setHeaderFixed");
+    }
+}
